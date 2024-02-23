@@ -54,7 +54,7 @@ public final class CircularProgress: NSView {
 
 	private var originalColor = NSColor.controlAccentColor
 	private var _color = NSColor.controlAccentColor
-
+	private var backgroundCircleColor = NSColor.controlAccentColor
 	/**
 	Color of the circular progress view.
 	*/
@@ -62,17 +62,15 @@ public final class CircularProgress: NSView {
 		get { _color }
 		set {
 			_color = newValue
+			originalColor = newValue
 			needsDisplay = true
 		}
 	}
 	
-	/**
-	Color of the circular progress view.
-	*/
 	@IBInspectable public var baseColor: NSColor {
-		get { originalColor }
+		get { backgroundCircleColor }
 		set {
-			originalColor = newValue
+			backgroundCircleColor = newValue
 			needsDisplay = true
 		}
 	}
@@ -248,7 +246,7 @@ public final class CircularProgress: NSView {
 
 	private func updateColors() {
 		let duration = 0.2
-		backgroundCircle.animate(\.strokeColor, to: color.withAlphaComponent(0.5), duration: duration)
+		backgroundCircle.animate(\.strokeColor, to: backgroundCircleColor.withAlphaComponent(0.5), duration: duration)
 		progressCircle.animate(\.strokeColor, to: color, duration: duration)
 		progressLabel.animate(\.foregroundColor, to: color, duration: duration)
 		indeterminateCircle.animate(\.strokeColor, to: color, duration: duration)
