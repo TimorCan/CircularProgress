@@ -62,6 +62,16 @@ public final class CircularProgress: NSView {
 		get { _color }
 		set {
 			_color = newValue
+			needsDisplay = true
+		}
+	}
+	
+	/**
+	Color of the circular progress view.
+	*/
+	@IBInspectable public var baseColor: NSColor {
+		get { originalColor }
+		set {
 			originalColor = newValue
 			needsDisplay = true
 		}
